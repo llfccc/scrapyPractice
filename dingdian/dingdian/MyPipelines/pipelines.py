@@ -6,7 +6,7 @@ class sql:
     insert sql
     '''
     @classmethod
-    def  insert_sql():
+    def  insert_sql(self,name):
         '''
         no
         '''
@@ -19,4 +19,13 @@ class sql:
             charset='utf8'
         )
         cur = conn.cursor()
-        cur.execute("select supplier_name from think_supplier_list where qichacha=0 and id>20 and id<50")
+        cur.execute("insert into nameTable  values('%s'),name")
+        conn.commit()
+        conn.close()
+
+from dingdian.items import DingdianItem
+
+class DingDianPipe(object):
+    def  process_item(self,item,spider):
+        name=item['name']
+        sql.insert_sql(name)

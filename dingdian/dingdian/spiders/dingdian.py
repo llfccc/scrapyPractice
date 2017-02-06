@@ -27,7 +27,7 @@ class Myspider(scrapy.Spider):
             yield Request(url,callback=self.get_name)
 
     def get_name(self,response):
-        text=response.text
+        text=response.url
         item = DingdianItem()
         item['name']=text
         return item
